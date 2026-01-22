@@ -1,0 +1,44 @@
+clc;
+clear all;
+close all;
+
+m1=14000;
+mt2=450.28;
+md2=450.28;
+mt3=200;
+md3=200;
+kt1=54.7;
+kd1=54.7;
+kt2=303.6;
+kd2=303.6;
+h=42;
+
+
+m1=14000;
+m2=450.28;
+m3=200;
+k1=54.7;
+k2=303.6;
+h=42;
+
+%W ramach weryfikacji 
+
+% Macierz A (bez zmian)
+A = [0, 1, 0, 0, 0, 0;
+     0, 0, 0, 0, 0, 0;
+     0, 0, 0, 1, 0, 0;
+     0, 0, (-4*k1-k2)/m2, 0, k2/m2, 0;
+     0, 0, 0, 0, 0, 1;
+     0, 0, k2/m3, 0, -k2/m3, 0];
+
+% Jeśli nie masz siły wymuszającej, B i D zostają zerowe
+B = zeros(6,1);
+D = [0; 0; 0];
+
+% Macierz C (wyjścia: droga, prędkość, przyspieszenie)
+C = [1, 0, 0, 0, 0, 0;
+     0, 1, 0, 0, 0, 0;
+     0, 0, 0, 0, 0, 0]; 
+
+% WARUNEK POCZĄTKOWY - to wpisujesz w blok State-Space
+X0 = [0; 67; 0; 0; 0; 0];
